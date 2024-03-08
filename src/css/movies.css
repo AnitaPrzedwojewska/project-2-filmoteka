@@ -1,0 +1,18 @@
+.movies {
+  position: relative;
+  margin-top: 216px;
+  min-height: 100px;
+}
+.container-movies {
+  padding: 20px 0;
+}
+.movies-gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie-card {
+  width: 280px;
+}
+.movie-poster {
+  width: 100%;
+}
