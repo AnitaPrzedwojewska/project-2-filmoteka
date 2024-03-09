@@ -1,10 +1,17 @@
+//CSS
+import './sass/main.scss';
+//JS Global
+import './js/api-tmdb';
+import './js/movies';
+import './js/local-storage';
+
 import {
   fetchTrendingMovies,
   fetchSearchMovies,
   fetchMovieDetails,
   fetchMovieTrailers,
 } from './js/api-tmdb';
-import { renderGallery } from './js/markup';
+import { getNecessary, renderGallery } from './js/movies';
 
 const form = document.querySelector('#search-form');
 const search = form.querySelector('#search-input');
@@ -27,11 +34,12 @@ async function showMovies() {
     const page = 1;
     const keywords = 'marvel';
     const movieId = 693134;
-    const moviesList = await fetchTrendingMovies(page);
-    // const moviesList = await fetchSearchMovies(keywords, page);
-    // const moviesList = await fetchMovieDetails(movieId);
-    // const moviesList = await fetchMovieTrailers(movieId);
-    console.log('results: ', moviesList.results);
+    const response = await fetchTrendingMovies(page);
+    const fullMoviesList = response.results;
+    console.log('typeof fullMoviesList: ', typeof fullMoviesList);
+    console.log(fullMoviesList);
+    const moviesList = getNecessary(fullMoviesList);
+    // console.log('results: ', moviesList.results);
     renderGallery(moviesList.results, moviesGallery);
   } catch (error) {
     console.log(error);
