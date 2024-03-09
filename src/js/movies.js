@@ -16,7 +16,7 @@ function getGenres(list, ids) {
   // return matchGenres;
 }
 
-function getNecessary(fullList) {
+export function getNecessary(fullList) {
   const list = fullList.map(
     ({ title, original_title, vote_average, poster_path, release_date, genre_ids, overview }) => {
       const poster = `${POSTERS_URL}${poster_path}`;
