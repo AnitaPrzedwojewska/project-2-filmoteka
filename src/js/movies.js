@@ -16,13 +16,33 @@ function getGenres(list, ids) {
   // return matchGenres;
 }
 
+function getNecessary(fullList) {
+  const list = fullList.map(
+    ({ title, original_title, vote_average, poster_path, release_date, genre_ids, overview }) => {
+      const poster = `${POSTERS_URL}${poster_path}`;
+      const genres = getGenres(allGenres, genre_ids);
+      return {
+        title,
+        original_title,
+        vote_average,
+        poster: `${poster}`,
+        release_date,
+        genres: `${genres}`,
+        overview,
+      };
+    },
+  );
+  console.log('list: ', list);
+  return list;
+}
+
 export async function renderGallery(list, gallery) {
   gallery.innerHTML = ``;
   const allGenres = GENRES_LIST;
   const galleryItems = list.map(
     ({ title, original_title, vote_average, poster_path, release_date, genre_ids, overview }) => {
       const poster = `${POSTERS_URL}${poster_path}`;
-      console.log('poster: ', poster);
+      // console.log('poster: ', poster);
       const genres = getGenres(allGenres, genre_ids);
       // console.log('genres: ', genres);
       return `
